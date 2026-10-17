@@ -38,3 +38,5 @@ input:focus,textarea:focus{border-color:var(--brand);outline:none}
 .hp{position:absolute;left:-999px}#status{margin:0;font-weight:600}#status.ok{color:#1a9d5c}#status.err{color:#d6336c}
 footer{text-align:center;padding:40px 20px;color:var(--muted);border-top:1px solid var(--line)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.tags.big span{font-size:1rem;padding:6px 16px}

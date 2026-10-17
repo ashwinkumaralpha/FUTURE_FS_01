@@ -1,21 +1,20 @@
-# Personal Professional Portfolio
+# Personal Professional Portfolio (FUTURE_FS_01)
 
-Full-stack portfolio: semantic HTML/CSS/JS frontend + Node.js/Express backend with a contact form that sends email notifications (Nodemailer) and optionally stores messages in MongoDB.
+**Live site:** https://portfolio-website-phi-nine-72.vercel.app
+
+Full-stack portfolio by Ashwinkumar M S. Static HTML/CSS/JavaScript frontend plus a Node.js contact API that sends email notifications with Nodemailer, deployed on Vercel.
 
 ## Run locally
 ```bash
 npm install
-cp .env.example .env   # fill in SMTP details (and MONGODB_URI if you want storage)
+cp .env.example .env   # add SMTP details
 npm start              # http://localhost:3000
 ```
 
-## Customize
-- Content (projects, resume, skills): top of `public/script.js`
-- Name, links, SEO tags, YOUR-LIVE-URL: `public/index.html`, `robots.txt`, `sitemap.xml`
-- Add your `resume.pdf` to `public/`
-
-## Deploy (live link)
-Push to GitHub, then create a Web Service on Render or Railway: build `npm install`, start `npm start`, and add the `.env` values as environment variables.
+## Structure
+- `public/` frontend (index.html, style.css, script.js, SEO files)
+- `api/contact.js` Vercel serverless contact endpoint
+- `server.js` Express server for local use
 
 ## Features
-Interactive projects filter and resume tabs, validated contact form (rate-limited, honeypot spam trap), email notifications, SEO (meta, Open Graph, JSON-LD, sitemap), responsive, dark mode, accessible.
+Projects, skills and education sections, validated contact form with spam protection, email notifications, SEO meta tags and sitemap, responsive layout, dark mode.

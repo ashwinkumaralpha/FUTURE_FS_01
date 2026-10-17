@@ -1,41 +1,26 @@
 // ===== Edit your content here =====
+const G = 'https://github.com/ashwinkumaralpha/';
 const projects = [
-  {t:'Task Manager',c:'fullstack',d:'MERN app with auth, drag-and-drop boards and real-time updates.',s:['React','Node.js','MongoDB'],live:'#',code:'#'},
-  {t:'Weather Dashboard',c:'frontend',d:'Responsive dashboard with 7-day forecast and location search.',s:['JavaScript','API','CSS'],live:'#',code:'#'},
-  {t:'Blog REST API',c:'backend',d:'Express API with JWT auth, pagination and full test coverage.',s:['Express','MySQL','JWT'],live:'#',code:'#'},
-  {t:'E-commerce Store',c:'fullstack',d:'Product catalogue, cart and checkout with Stripe test mode.',s:['Next.js','Node.js','MongoDB'],live:'#',code:'#'}
+  { t: 'Personal Portfolio Website', d: 'Full-stack portfolio built as my internship task: responsive frontend with a contact form that sends email notifications through a Node.js backend.',
+    s: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express', 'Nodemailer'], live: 'https://portfolio-website-phi-nine-72.vercel.app', code: G + 'FUTURE_FS_01' },
+  { t: 'Predictive Maintenance Agent', d: 'Hackathon project: a machine-monitoring dashboard that runs an Isolation Forest model in the browser to score failure risk and trigger maintenance workflows.',
+    s: ['JavaScript', 'HTML', 'Machine Learning'], code: G + 'hackathon' },
+  { t: 'Happy Paws Pet Spa', d: 'Pet grooming and boarding website with a booking form; a Node.js and Express backend sends booking details by email.',
+    s: ['HTML', 'Node.js', 'Express', 'Nodemailer'], code: G + 'happy-paws' },
+  { t: 'Rule-Based Chatbot', d: 'Python chatbot that answers greetings, the time and the date using predefined rules. Built for the CODSOFT internship.',
+    s: ['Python'], code: G + 'CODSOFT/tree/main/Chatbot_Project' }
 ];
-const resume = {
-  exp:[{h:'Full-Stack Developer Intern',s:'Company Name · 2026',p:'Built this portfolio and REST APIs; wrote reusable React components.'},
-       {h:'Freelance Web Developer',s:'2025 – Present',p:'Delivered business websites using HTML, CSS, JavaScript and WordPress.'}],
-  edu:[{h:'B.E. in Computer Science',s:'Your College · 2022 – 2026',p:'Relevant: Data Structures, DBMS, Web Technologies.'}],
-  skills:[['HTML / CSS',92],['JavaScript',88],['React',82],['Node.js / Express',80],['MongoDB / MySQL',75],['Git & GitHub',85]]
-};
-const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const $ = s => document.querySelector(s);
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-// Projects + filter
-function showProjects(f) {
-  $('#grid').innerHTML = projects.filter(p => f === 'all' || p.c === f).map(p => `
-    <article class="card"><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p>
-    <div class="tags">${p.s.map(x => `<span>${esc(x)}</span>`).join('')}</div>
-    <div class="links"><a href="${p.live}">Live demo</a><a href="${p.code}">Source</a></div></article>`).join('');
-}
-$$('.chip').forEach(b => b.onclick = () => { $$('.chip').forEach(x => x.classList.toggle('on', x === b)); showProjects(b.dataset.f); });
-showProjects('all');
-
-// Resume tabs
-function showTab(t) {
-  $('#panel').innerHTML = t === 'skills'
-    ? resume.skills.map(([n, v]) => `<div class="bar"><b>${n}</b><div><i style="width:0" data-w="${v}%"></i></div></div>`).join('')
-    : resume[t].map(i => `<div class="item"><h3>${esc(i.h)}</h3><small>${esc(i.s)}</small><p>${esc(i.p)}</p></div>`).join('');
-  requestAnimationFrame(() => $$('.bar i').forEach(i => i.style.width = i.dataset.w));
-}
-$$('.tab').forEach(b => b.onclick = () => { $$('.tab').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b); }); showTab(b.dataset.t); });
-showTab('exp');
+// Projects
+$('#grid').innerHTML = projects.map(p => `
+  <article class="card"><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p>
+  <div class="tags">${p.s.map(x => `<span>${esc(x)}</span>`).join('')}</div>
+  <div class="links">${p.live ? `<a href="${p.live}">Live site</a>` : ''}<a href="${p.code}">Source code</a></div></article>`).join('');
 
 // Rotating word in hero
-const words = ['database', 'server', 'API', 'browser']; let w = 0;
+const words = ['web apps', 'AI projects', 'APIs', 'ML models']; let w = 0;
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
   setInterval(() => { w = (w + 1) % words.length; $('#swap').textContent = words[w]; }, 2200);
 $('#yr').textContent = new Date().getFullYear();
